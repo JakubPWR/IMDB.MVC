@@ -15,5 +15,19 @@ namespace IMDB.Infrastructure.Persistance
 
         }
         public DbSet<IMDB.Domain.Entities.Movie> Movies { get; set; }
+        public DbSet<IMDB.Domain.Entities.Actors> Actors { get; set; }
+        public DbSet<IMDB.Domain.Entities.Rating> Ratings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Domain.Entities.Movie>(m =>
+            m.OwnsOne(m => m.Ratings)
+            );
+            modelBuilder.Entity<Domain.Entities.Actors>(a =>
+            a.OwnsOne(a => a.Movies)
+            );
+        }
     }
 }
