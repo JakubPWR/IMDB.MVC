@@ -4,22 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.MVC", "IMDB.MVC\IMDB.MVC.csproj", "{259283BB-F48B-4CE4-8612-131216113E64}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D} = {5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D}
-		{773ABCE6-D9D7-4F9C-B119-4A37C233195A} = {773ABCE6-D9D7-4F9C-B119-4A37C233195A}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Application", "IMDB.Application\IMDB.Application.csproj", "{5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DF29C379-0FC0-4145-B072-E997F55F2EE8} = {DF29C379-0FC0-4145-B072-E997F55F2EE8}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Domain", "IMDB.Domain\IMDB.Domain.csproj", "{DF29C379-0FC0-4145-B072-E997F55F2EE8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Infrastructure", "IMDB.Infrastructure\IMDB.Infrastructure.csproj", "{773ABCE6-D9D7-4F9C-B119-4A37C233195A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D} = {5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,18 +15,6 @@ Global
 		{259283BB-F48B-4CE4-8612-131216113E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{259283BB-F48B-4CE4-8612-131216113E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{259283BB-F48B-4CE4-8612-131216113E64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F9A9D71-5C4A-476D-BE6A-FFD3732DD00D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF29C379-0FC0-4145-B072-E997F55F2EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF29C379-0FC0-4145-B072-E997F55F2EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF29C379-0FC0-4145-B072-E997F55F2EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF29C379-0FC0-4145-B072-E997F55F2EE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{773ABCE6-D9D7-4F9C-B119-4A37C233195A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{773ABCE6-D9D7-4F9C-B119-4A37C233195A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{773ABCE6-D9D7-4F9C-B119-4A37C233195A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{773ABCE6-D9D7-4F9C-B119-4A37C233195A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

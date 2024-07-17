@@ -1,5 +1,0 @@
-C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Domain\obj\Debug\net7.0\IMDB.Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Domain\obj\Debug\net7.0\IMDB.Domain.AssemblyInfoInputs.cache
-C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Domain\obj\Debug\net7.0\IMDB.Domain.AssemblyInfo.cs
-C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Domain\obj\Debug\net7.0\IMDB.Domain.csproj.CoreCompileInputs.cache
-C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Domain\obj\Debug\net7.0\IMDB.Domain.sourcelink.json
