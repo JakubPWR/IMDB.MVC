@@ -14,6 +14,6 @@ namespace IMDB.Infrastructure.Persistance
         {
 
         }
-        public DbSet<IMDB>
+        public DbSet<IMDB.Domain.Entities.Movie> Movies { get; set; }
     }
 }
