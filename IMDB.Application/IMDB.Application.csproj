@@ -5,5 +5,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  
+  <ItemGroup>
+    <ProjectReference Include="..\IMDB.Domain\IMDB.Domain.csproj" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="IMDBService\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="IMDB\Commands\" />
+    <Folder Include="IMDB\Queries\" />
+    <Folder Include="Mappings\" />
+    <Folder Include="DTOs\" />
+  </ItemGroup>
+  
 </Project>

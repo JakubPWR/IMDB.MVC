@@ -1,3 +1,5 @@
 # Ignore Visual Studio files and folders
 .vs/
-
+# Ignore all AssemblyInfo and AssemblyInfoInputs.cache files
+**/obj/**/AssemblyInfo.cs
+**/obj/**/AssemblyInfoInputs.cache
