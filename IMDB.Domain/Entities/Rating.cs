@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace IMDB.Domain.Entities
 {
-    public class Movie
+    public class Rating
     {
         public int Id { get; set; }
-        public string MovieName { get; set; }
-        public string PictureUrl { get; set; }
-        public float Rating { get; set; }
-        public string Description { get; set; }
+        public float rating { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
         public DateTime AddedAt { get; set; } = DateTime.UtcNow;
-        public IEnumerable<Rating> Ratings { get; set; }
-
 
     }
 }

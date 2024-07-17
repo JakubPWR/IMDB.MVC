@@ -4,12 +4,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMDB.MVC", "IMDB.MVC\IMDB.MVC.csproj", "{259283BB-F48B-4CE4-8612-131216113E64}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8B0F628F-7C14-49E9-911C-ED6F83C50B63} = {8B0F628F-7C14-49E9-911C-ED6F83C50B63}
+		{A3892DF7-0E4E-4CC8-AC03-2B1DBDB3BF01} = {A3892DF7-0E4E-4CC8-AC03-2B1DBDB3BF01}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Domain", "IMDB.Domain\IMDB.Domain.csproj", "{136691A1-E54C-4530-AF6C-4BEDD2D9177E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Infrastructure", "IMDB.Infrastructure\IMDB.Infrastructure.csproj", "{8B0F628F-7C14-49E9-911C-ED6F83C50B63}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3892DF7-0E4E-4CC8-AC03-2B1DBDB3BF01} = {A3892DF7-0E4E-4CC8-AC03-2B1DBDB3BF01}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMDB.Application", "IMDB.Application\IMDB.Application.csproj", "{A3892DF7-0E4E-4CC8-AC03-2B1DBDB3BF01}"
+	ProjectSection(ProjectDependencies) = postProject
+		{136691A1-E54C-4530-AF6C-4BEDD2D9177E} = {136691A1-E54C-4530-AF6C-4BEDD2D9177E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

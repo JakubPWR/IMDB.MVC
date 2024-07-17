@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IMDB.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83c65f9899dd8c9156ed2c0f682c48290718a592")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b9e46f90ec76bebab08c4c3743efa722f78dd39")]
 [assembly: System.Reflection.AssemblyProductAttribute("IMDB.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IMDB.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
