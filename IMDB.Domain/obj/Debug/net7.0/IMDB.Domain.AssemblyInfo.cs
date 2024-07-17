@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("IMDB.MVC")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("IMDB.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83c65f9899dd8c9156ed2c0f682c48290718a592")]
-[assembly: System.Reflection.AssemblyProductAttribute("IMDB.MVC")]
-[assembly: System.Reflection.AssemblyTitleAttribute("IMDB.MVC")]
+[assembly: System.Reflection.AssemblyProductAttribute("IMDB.Domain")]
+[assembly: System.Reflection.AssemblyTitleAttribute("IMDB.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Wygenerowane przez klasę WriteCodeFragment programu MSBuild.
