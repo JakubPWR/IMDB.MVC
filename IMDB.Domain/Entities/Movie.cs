@@ -13,8 +13,10 @@ namespace IMDB.Domain.Entities
         public string PictureUrl { get; set; }
         public float Rating { get; set; }
         public string Description { get; set; }
+        public DateTime PremierDate { get; set; }
         public DateTime AddedAt { get; set; } = DateTime.UtcNow;
-        public IEnumerable<Rating> Ratings { get; set; }
+        public IEnumerable<Rating>? Ratings { get; set; }
+        public IEnumerable<Actors>? Cast { get; set; }
 
 
     }
