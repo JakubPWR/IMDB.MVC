@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using IMDB.Application.IMDB.Commands;
 using IMDB.Application.IMDB.Queries;
 using IMDB.Domain.Interfaces;
 using MediatR;
@@ -20,6 +21,20 @@ namespace IMDB.MVC.Controllers
         {
             var moviesDto = await _mediatR.Send(new GetAllMoviesQuery());
             return View(moviesDto);
+        }
+        [Route("IMDB/{MovieName}/Delete")]
+        public async Task<IActionResult> Delete(string MovieName)
+        {
+            var movie = await _mediatR.Send(new GetMovieByNameQuery(MovieName));
+            DeleteMovieCommand model = _mapper.Map<DeleteMovieCommand>(movie);
+            return View(model);
+        }
+        [HttpPost]
+        [Route("IMDB/{MovieName}/Delete")]
+        public async Task<IActionResult> Delete(DeleteMovieCommand command, string name)
+        {
+            await _mediatR.Send(command);
+            return RedirectToAction("Index");
         }
     }
 }

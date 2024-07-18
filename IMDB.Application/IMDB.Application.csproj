@@ -15,8 +15,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="IMDB\Commands\" />
-    <Folder Include="IMDB\Queries\" />
     <Folder Include="Mappings\" />
     <Folder Include="DTOs\" />
   </ItemGroup>

@@ -22,7 +22,7 @@ namespace IMDB.Infrastructure.Seeders
                     {
                         MovieName = "Avengers",
                         Description = "Grupa bohaterów walczy ze złem",
-                        PictureUrl = "https://www.filmweb.pl/film/Avengers-2012-371515/posters"
+                        PictureUrl = "https://ocdn.eu/pulscms-transforms/1/ZDik9kpTURBXy9jYjQ4N2I1ZmI0OWViZGU3ZWNjMDU1ZGQ5MmE4ZGZlYy5qcGeTlQM9Cc0EYs0CeJMFzQMUzQG8kwmmYzI4MGU0Bt4AAaEwBg/avengers.avif"
                     };
                     await _dbContext.Movies.AddAsync(Avengers);
                     await _dbContext.SaveChangesAsync();

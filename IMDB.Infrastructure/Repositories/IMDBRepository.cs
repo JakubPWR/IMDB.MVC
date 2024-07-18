@@ -19,6 +19,20 @@ namespace IMDB.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Domain.Entities.Movie>> GetAllMovies() => await _dbContext.Movies.ToListAsync();
+        public async Task DeleteMovie(string name)
+        {
+            var movie = await _dbContext.Movies.FirstOrDefaultAsync(m => m.MovieName == name);
+            _dbContext.Movies.Remove(movie!);
+        }
+        public async Task Commit()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task<Movie> GetMovieByName(string name)
+        {
+            var movie = _dbContext.Movies.FirstOrDefault(m => m.MovieName == name);
+            return movie;
+        }
 
     }
 }

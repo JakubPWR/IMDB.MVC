@@ -10,5 +10,8 @@ namespace IMDB.Domain.Interfaces
     public interface IIMDBRepository
     {
         Task<IEnumerable<Movie>> GetAllMovies();
+        Task DeleteMovie(string name);
+        Task Commit();
+        Task<Movie> GetMovieByName(string name); 
     }
 }

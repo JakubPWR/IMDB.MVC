@@ -1,0 +1,28 @@
+﻿@model IMDB.Application.IMDB.Commands.DeleteMovieCommand
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h4>Delete @Model.MovieName</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Delete" method="post">
+            <div class="fprm-group m-3">
+                <label asp-for="Confirmation" class="control-label"></label>
+                <input asp-for="Confirmation" class="form-control" />
+            </div>
+            <div class="form-group m-3">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<a asp-action="Index" class="btn btn-secondary">Back to list</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

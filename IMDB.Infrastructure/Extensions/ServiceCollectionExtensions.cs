@@ -1,6 +1,7 @@
 ﻿using IMDB.Domain.Interfaces;
 using IMDB.Infrastructure.Persistance;
 using IMDB.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,9 @@ namespace IMDB.Infrastructure.Extensions
             services.AddScoped<Seeders.IMDBSeeder>();
             services.AddScoped<IIMDBRepository, IMDBRepository>();
             services.AddRazorPages();
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<IMDBContext>();
         }
     }
 }

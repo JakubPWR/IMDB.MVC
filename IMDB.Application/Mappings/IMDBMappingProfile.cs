@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using IMDB.Application.ApplicationUser;
 using IMDB.Application.DTOs;
+using IMDB.Application.IMDB.Commands;
 using IMDB.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace IMDB.Application.Mappings
         {
             var user = userContext.GetCurrentUser();
             CreateMap<Movie, MovieDto>();
+            CreateMap<MovieDto, DeleteMovieCommand>();
         }
     }
 }

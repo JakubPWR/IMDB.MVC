@@ -8,8 +8,10 @@
     {
         <div class="card m-3" style="width: 18rem;">
             <div class="card-body">
+                <img src="@item.PictureUrl" class="img-fluid" alt="Image of @item.MovieName">
                 <h5 class="card-title">@item.MovieName</h5>
                 <h6 class="card-subtitle mb-2 text-muted">@item.Rating</h6>
+                <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Delete" asp-route-MovieName="@item.MovieName">Delete</a>
             </div>
         </div>
     }
