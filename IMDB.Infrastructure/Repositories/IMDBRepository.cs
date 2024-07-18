@@ -18,7 +18,7 @@ namespace IMDB.Infrastructure.Repositories
             _dbContext = context;
         }
 
-        public async Task<IEnumerable<Domain.Entities.Movie?>> GetAllMovies() => await _dbContext.Movies.ToListAsync();
+        public async Task<IEnumerable<Domain.Entities.Movie>> GetAllMovies() => await _dbContext.Movies.ToListAsync();
 
     }
 }

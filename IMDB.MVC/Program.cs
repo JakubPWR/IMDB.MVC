@@ -4,13 +4,12 @@ using IMDB.Infrastructure.Extensions;
 using IMDB.Infrastructure.Seeders;
 using IMDB.Domain.Interfaces;
 using IMDB.Infrastructure.Repositories;
-using IMDB.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

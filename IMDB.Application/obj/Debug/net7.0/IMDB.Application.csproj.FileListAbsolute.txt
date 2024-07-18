@@ -1,0 +1,16 @@
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.csproj.AssemblyReference.cache
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.AssemblyInfoInputs.cache
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.AssemblyInfo.cs
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.csproj.CoreCompileInputs.cache
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.sourcelink.json
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\bin\Debug\net7.0\IMDB.Application.deps.json
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\bin\Debug\net7.0\IMDB.Application.dll
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\bin\Debug\net7.0\IMDB.Application.pdb
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\bin\Debug\net7.0\IMDB.Domain.dll
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\bin\Debug\net7.0\IMDB.Domain.pdb
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.App.C308B43E.Up2Date
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.dll
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\refint\IMDB.Application.dll
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\IMDB.Application.pdb
+C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.Application\obj\Debug\net7.0\ref\IMDB.Application.dll
