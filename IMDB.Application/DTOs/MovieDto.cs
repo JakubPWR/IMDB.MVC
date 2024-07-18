@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace IMDB.Application.DTOs
 {
-    internal class MovieDto
+    public class MovieDto
     {
+        public string MovieName { get; set; }
+        public string PictureUrl { get; set; }
+        public float Rating { get; set; }
     }
 }
