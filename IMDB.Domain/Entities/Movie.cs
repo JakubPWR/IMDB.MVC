@@ -15,8 +15,8 @@ namespace IMDB.Domain.Entities
         public string Description { get; set; }
         public DateTime PremierDate { get; set; }
         public DateTime AddedAt { get; set; } = DateTime.UtcNow;
-        public IEnumerable<Rating>? Ratings { get; set; }
-        public IEnumerable<Actors>? Cast { get; set; }
+        public List<Rating>? Ratings { get; set; } = new();
+        public List<Actor>? Cast { get; set; } = new();
 
 
     }

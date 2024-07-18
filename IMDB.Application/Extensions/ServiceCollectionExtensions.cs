@@ -17,7 +17,8 @@ namespace IMDB.Application.Extensions
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddMediatR(typeof(GetAllMoviesQuery));
-
+            services.AddScoped<IUserContext, UserContext>();
+            services.AddHttpContextAccessor();
 
             services.AddScoped(provider => new MapperConfiguration(cfg =>
             {

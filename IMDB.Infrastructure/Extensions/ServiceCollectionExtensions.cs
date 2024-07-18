@@ -20,6 +20,7 @@ namespace IMDB.Infrastructure.Extensions
             options.UseSqlServer(configuration.GetConnectionString("IMDB")));
             services.AddScoped<Seeders.IMDBSeeder>();
             services.AddScoped<IIMDBRepository, IMDBRepository>();
+            services.AddRazorPages();
         }
     }
 }
