@@ -1,8 +1,16 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<IMDB.Application.DTOs.MovieDto>
+@{
+    ViewData["Title"] = "IMDB";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@item.MovieName</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@item.Rating</h6>
+            </div>
+        </div>
+    }
 </div>

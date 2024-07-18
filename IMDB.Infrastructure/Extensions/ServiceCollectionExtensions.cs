@@ -1,4 +1,6 @@
-﻿using IMDB.Infrastructure.Persistance;
+﻿using IMDB.Domain.Interfaces;
+using IMDB.Infrastructure.Persistance;
+using IMDB.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,8 @@ namespace IMDB.Infrastructure.Extensions
         {
             services.AddDbContext<IMDBContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("IMDB")));
+            services.AddScoped<Seeders.IMDBSeeder>();
+            services.AddScoped<IIMDBRepository, IMDBRepository>();
         }
     }
 }
