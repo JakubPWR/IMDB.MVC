@@ -11,5 +11,8 @@ namespace IMDB.Application.DTOs
         public string MovieName { get; set; }
         public string PictureUrl { get; set; }
         public float Rating { get; set; }
+        public bool IsEditable { get; set; }
+        public string CreatedById { get; set; }
+        public string Description { get; set; }
     }
 }

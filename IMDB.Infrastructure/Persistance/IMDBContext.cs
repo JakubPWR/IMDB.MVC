@@ -22,12 +22,15 @@ namespace IMDB.Infrastructure.Persistance
         {
             base.OnModelCreating(modelBuilder);
 
-/*            modelBuilder.Entity<Domain.Entities.Movie>(m =>
-            m.OwnsOne(m => m.Ratings)
+            modelBuilder.Entity<Domain.Entities.Movie>(m =>
+            {
+                m.OwnsOne(m => m.Ratings);
+                m.OwnsOne(m => m.Cast);
+            }
             );
             modelBuilder.Entity<Domain.Entities.Actor>(a =>
             a.OwnsOne(a => a.Movies)
-            );*/
+            );
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace IMDB.Domain.Entities
         public DateTime AddedAt { get; set; } = DateTime.UtcNow;
         public List<Rating>? Ratings { get; set; } = new();
         public List<Actor>? Cast { get; set; } = new();
+        public string? CreatedById { get; set; }
+        public IdentityUser? CreatedBy { get; set; }
 
 
     }

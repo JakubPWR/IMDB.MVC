@@ -3,6 +3,9 @@
     ViewData["Title"] = "IMDB";
 }
 <h1>Witamy</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
 <div class="row">
     @foreach (var item in Model)
     {
@@ -10,8 +13,13 @@
             <div class="card-body">
                 <img src="@item.PictureUrl" class="img-fluid" alt="Image of @item.MovieName">
                 <h5 class="card-title">@item.MovieName</h5>
+                <h5 class="card-body">@item.Description</h5>
                 <h6 class="card-subtitle mb-2 text-muted">@item.Rating</h6>
-                <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Delete" asp-route-MovieName="@item.MovieName">Delete</a>
+                @if (item.IsEditable)
+                {
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Delete" asp-route-MovieName="@item.MovieName">Delete</a>
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Edit" asp-route-MovieName="@item.MovieName">Edit</a>
+                }
             </div>
         </div>
     }

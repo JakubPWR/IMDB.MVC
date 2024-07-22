@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IMDB.Infrastructure.Migrations
 {
     [DbContext(typeof(IMDBContext))]
-    [Migration("20240718150247_init")]
+    [Migration("20240722131947_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace IMDB.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ActorMovie", b =>
-                {
-                    b.Property<int>("CastId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MoviesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CastId", "MoviesId");
-
-                    b.HasIndex("MoviesId");
-
-                    b.ToTable("ActorMovie");
-                });
 
             modelBuilder.Entity("IMDB.Domain.Entities.Actor", b =>
                 {
@@ -68,6 +53,9 @@ namespace IMDB.Infrastructure.Migrations
                     b.Property<DateTime>("AddedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -88,6 +76,8 @@ namespace IMDB.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedById");
+
                     b.ToTable("Movies");
                 });
 
@@ -105,9 +95,6 @@ namespace IMDB.Infrastructure.Migrations
                     b.Property<DateTime>("AddedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -121,8 +108,6 @@ namespace IMDB.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ActorId");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Ratings");
                 });
@@ -272,10 +257,12 @@ namespace IMDB.Infrastructure.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -312,10 +299,12 @@ namespace IMDB.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -325,19 +314,70 @@ namespace IMDB.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ActorMovie", b =>
+            modelBuilder.Entity("IMDB.Domain.Entities.Actor", b =>
                 {
-                    b.HasOne("IMDB.Domain.Entities.Actor", null)
-                        .WithMany()
-                        .HasForeignKey("CastId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.OwnsOne("System.Collections.Generic.List<IMDB.Domain.Entities.Movie>", "Movies", b1 =>
+                        {
+                            b1.Property<int>("ActorId")
+                                .HasColumnType("int");
 
-                    b.HasOne("IMDB.Domain.Entities.Movie", null)
+                            b1.Property<int>("Capacity")
+                                .HasColumnType("int");
+
+                            b1.HasKey("ActorId");
+
+                            b1.ToTable("Actors");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ActorId");
+                        });
+
+                    b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("IMDB.Domain.Entities.Movie", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CreatedBy")
                         .WithMany()
-                        .HasForeignKey("MoviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedById");
+
+                    b.OwnsOne("System.Collections.Generic.List<IMDB.Domain.Entities.Actor>", "Cast", b1 =>
+                        {
+                            b1.Property<int>("MovieId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Capacity")
+                                .HasColumnType("int");
+
+                            b1.HasKey("MovieId");
+
+                            b1.ToTable("Movies");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MovieId");
+                        });
+
+                    b.OwnsOne("System.Collections.Generic.List<IMDB.Domain.Entities.Rating>", "Ratings", b1 =>
+                        {
+                            b1.Property<int>("MovieId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Capacity")
+                                .HasColumnType("int");
+
+                            b1.HasKey("MovieId");
+
+                            b1.ToTable("Movies");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MovieId");
+                        });
+
+                    b.Navigation("Cast");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("IMDB.Domain.Entities.Rating", b =>
@@ -345,10 +385,6 @@ namespace IMDB.Infrastructure.Migrations
                     b.HasOne("IMDB.Domain.Entities.Actor", null)
                         .WithMany("Ratings")
                         .HasForeignKey("ActorId");
-
-                    b.HasOne("IMDB.Domain.Entities.Movie", null)
-                        .WithMany("Ratings")
-                        .HasForeignKey("MovieId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -403,11 +439,6 @@ namespace IMDB.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("IMDB.Domain.Entities.Actor", b =>
-                {
-                    b.Navigation("Ratings");
-                });
-
-            modelBuilder.Entity("IMDB.Domain.Entities.Movie", b =>
                 {
                     b.Navigation("Ratings");
                 });

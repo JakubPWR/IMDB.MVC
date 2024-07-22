@@ -1,0 +1,2 @@
+﻿INSERT INTO IMDBDb.dbo.AspNetRoles VALUES
+	(NEWID(),'Admin','ADMIN',NEWID())

@@ -17,7 +17,8 @@ namespace IMDB.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ActorName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ActorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MoviesCapacity = table.Column<int>(name: "Movies_Capacity", type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,21 +65,25 @@ namespace IMDB.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Movies",
+                name: "Ratings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MovieName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rating = table.Column<float>(type: "real", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PremierDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AddedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    rating = table.Column<float>(type: "real", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movies", x => x.Id);
+                    table.PrimaryKey("PK_Ratings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Actors_ActorId",
+                        column: x => x.ActorId,
+                        principalTable: "Actors",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -127,8 +132,8 @@ namespace IMDB.Infrastructure.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -172,8 +177,8 @@ namespace IMDB.Infrastructure.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -188,61 +193,30 @@ namespace IMDB.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActorMovie",
-                columns: table => new
-                {
-                    CastId = table.Column<int>(type: "int", nullable: false),
-                    MoviesId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ActorMovie", x => new { x.CastId, x.MoviesId });
-                    table.ForeignKey(
-                        name: "FK_ActorMovie_Actors_CastId",
-                        column: x => x.CastId,
-                        principalTable: "Actors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ActorMovie_Movies_MoviesId",
-                        column: x => x.MoviesId,
-                        principalTable: "Movies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Ratings",
+                name: "Movies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    rating = table.Column<float>(type: "real", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MovieName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<float>(type: "real", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PremierDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AddedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ActorId = table.Column<int>(type: "int", nullable: true),
-                    MovieId = table.Column<int>(type: "int", nullable: true)
+                    RatingsCapacity = table.Column<int>(name: "Ratings_Capacity", type: "int", nullable: true),
+                    CastCapacity = table.Column<int>(name: "Cast_Capacity", type: "int", nullable: true),
+                    CreatedById = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ratings", x => x.Id);
+                    table.PrimaryKey("PK_Movies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ratings_Actors_ActorId",
-                        column: x => x.ActorId,
-                        principalTable: "Actors",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Ratings_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
+                        name: "FK_Movies_AspNetUsers_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ActorMovie_MoviesId",
-                table: "ActorMovie",
-                column: "MoviesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -284,22 +258,19 @@ namespace IMDB.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Movies_CreatedById",
+                table: "Movies",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Ratings_ActorId",
                 table: "Ratings",
                 column: "ActorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ratings_MovieId",
-                table: "Ratings",
-                column: "MovieId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ActorMovie");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -316,6 +287,9 @@ namespace IMDB.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Movies");
+
+            migrationBuilder.DropTable(
                 name: "Ratings");
 
             migrationBuilder.DropTable(
@@ -326,9 +300,6 @@ namespace IMDB.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Actors");
-
-            migrationBuilder.DropTable(
-                name: "Movies");
         }
     }
 }

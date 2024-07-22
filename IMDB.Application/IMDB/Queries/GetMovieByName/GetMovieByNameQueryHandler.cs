@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMDB.Application.IMDB.Queries
+namespace IMDB.Application.IMDB.Queries.GetMovieByName
 {
     public class GetMovieByNameQueryHandler : IRequestHandler<GetMovieByNameQuery, MovieDto>
     {

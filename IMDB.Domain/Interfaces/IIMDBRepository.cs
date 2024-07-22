@@ -12,6 +12,8 @@ namespace IMDB.Domain.Interfaces
         Task<IEnumerable<Movie>> GetAllMovies();
         Task DeleteMovie(string name);
         Task Commit();
-        Task<Movie> GetMovieByName(string name); 
+        Task<Movie> GetMovieByName(string name);
+        Task Create(Movie movie);
+        Task Edit(Movie movie);
     }
 }

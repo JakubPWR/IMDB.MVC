@@ -1,4 +1,5 @@
-﻿using IMDB.Domain.Entities;
+﻿using IMDB.Application.DTOs;
+using IMDB.Domain.Entities;
 using IMDB.Domain.Interfaces;
 using IMDB.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,14 @@ namespace IMDB.Infrastructure.Repositories
         {
             var movie = _dbContext.Movies.FirstOrDefault(m => m.MovieName == name);
             return movie;
+        }
+        public async Task Create(Movie movie)
+        {
+            await _dbContext.AddAsync(movie);
+        }
+        public async Task Edit(Movie movie)
+        {
+            var movieToEdit = _dbContext.Movies.FirstOrDefault(mte => mte.MovieName == movie.MovieName);
         }
 
     }

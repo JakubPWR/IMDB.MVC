@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using IMDB.Application.ApplicationUser;
-using IMDB.Application.IMDB.Queries;
+using IMDB.Application.IMDB.Commands.CreateMovie;
+using IMDB.Application.IMDB.Queries.GetAllMovies;
+using IMDB.Application.IMDB.Queries.GetMovieByName;
 using IMDB.Application.Mappings;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +32,10 @@ namespace IMDB.Application.Extensions
                 cfg.AddProfile(new IMDBMappingProfile(userContext));
             }).CreateMapper()
             );
+
+            services.AddValidatorsFromAssemblyContaining<CreateMovieCommandValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
         }
     }
 }
