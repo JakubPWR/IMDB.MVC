@@ -10,6 +10,6 @@ namespace IMDB.Application.IMDB.Commands.Edit
 {
     public class EditMovieCommand : MovieDto, IRequest
     {
-
+        public string EncodedNameEdit { get; set; } 
     }
 }

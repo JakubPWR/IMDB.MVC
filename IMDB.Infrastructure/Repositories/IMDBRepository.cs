@@ -42,6 +42,7 @@ namespace IMDB.Infrastructure.Repositories
         {
             var movieToEdit = _dbContext.Movies.FirstOrDefault(mte => mte.MovieName == movie.MovieName);
         }
+        public async Task<Movie> GetByEncodedName(string encodedName) => _dbContext.Movies.FirstOrDefault(m => m.EncodedName == encodedName);
 
     }
 }

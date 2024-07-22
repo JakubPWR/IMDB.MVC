@@ -15,5 +15,6 @@ namespace IMDB.Domain.Interfaces
         Task<Movie> GetMovieByName(string name);
         Task Create(Movie movie);
         Task Edit(Movie movie);
+        Task<Movie> GetByEncodedName(string encodedName);
     }
 }

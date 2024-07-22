@@ -20,6 +20,8 @@ namespace IMDB.Domain.Entities
         public List<Actor>? Cast { get; set; } = new();
         public string? CreatedById { get; set; }
         public IdentityUser? CreatedBy { get; set; }
+        public string EncodedName { get; private set; } = default!;
+        public void EncodeName() => EncodedName = MovieName.ToLower().Replace(" ", "-");
 
 
     }

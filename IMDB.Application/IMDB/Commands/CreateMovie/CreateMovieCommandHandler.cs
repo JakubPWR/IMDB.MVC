@@ -32,6 +32,7 @@ namespace IMDB.Application.IMDB.Commands.CreateMovie
             }
             var movie = _mapper.Map<Movie>(request);
             movie.CreatedById = currentUser.Id;
+            movie.EncodeName();
             await _repository.Create(movie);
             await _repository.Commit();
             return Unit.Value;

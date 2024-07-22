@@ -14,5 +14,6 @@ namespace IMDB.Application.DTOs
         public bool IsEditable { get; set; }
         public string CreatedById { get; set; }
         public string Description { get; set; }
+        public string EncodedName { get; set; }
     }
 }

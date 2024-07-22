@@ -71,6 +71,7 @@ namespace IMDB.MVC.Controllers
                 return RedirectToAction("NoAccess", "Home");
             }
             EditMovieCommand model = _mapper.Map<EditMovieCommand>(movie);
+            model.EncodedNameEdit = movie.EncodedName;
             return View(model);
         }
         [Route("IMDB/{MovieName}/Edit")]

@@ -29,7 +29,7 @@ namespace IMDB.Application.IMDB.Commands.Edit
             {
                 return Unit.Value;
             }
-            var movie = await _repository.GetMovieByName(request.MovieName!);
+            var movie = await _repository.GetByEncodedName(request.EncodedNameEdit!);
             movie.MovieName = request.MovieName;
             movie.PictureUrl = request.PictureUrl;
             movie.Description = request.Description;
