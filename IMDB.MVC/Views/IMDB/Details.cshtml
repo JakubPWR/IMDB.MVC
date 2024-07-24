@@ -1,0 +1,23 @@
+﻿@using IMDB.Application.DTOs
+@model MovieDto
+@{
+    ViewData["Title"] = "Details";
+}
+<h4>Details @Model.MovieName</h4>
+<div class="card m-6" style="width: 30rem;">
+    <div class="card-body">
+        <img src="@Model.PictureUrl" class="img-fluid" alt="Image of @Model.MovieName">
+    </div>
+</div>
+
+<div class="jumbotron">
+    <h5 class="display-4">@Model.MovieName</h5>
+    <p class="lead">@Model.Description</p>
+    <hr class="my-4">
+    <h4>Rating: @Model.Rating</h4>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Add rating</a>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Cast</a>
+    </p>
+</div>

@@ -13,6 +13,7 @@ namespace IMDB.Domain.Entities
         public int UserId { get; set; }
         public string UserName { get; set; }
         public DateTime AddedAt { get; set; } = DateTime.UtcNow;
+        public string? About { get; set; }
 
     }
 }

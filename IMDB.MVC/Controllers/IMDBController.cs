@@ -87,5 +87,11 @@ namespace IMDB.MVC.Controllers
             this.SetNotification("success", $"Edited movie {command.MovieName}");
             return RedirectToAction("Index"); //TODO refactor
         }
+        [Route("IMDB/{MovieName}/Details")]
+        public async Task<IActionResult> Details(string MovieName)
+        {
+            var movie = await _mediatR.Send(new GetMovieByNameQuery(MovieName)); 
+            return View(movie);
+        }
     }
 }
