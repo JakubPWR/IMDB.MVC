@@ -44,5 +44,13 @@ namespace IMDB.Infrastructure.Repositories
         }
         public async Task<Movie> GetByEncodedName(string encodedName) => _dbContext.Movies.FirstOrDefault(m => m.EncodedName == encodedName);
 
+        public async Task AddRating(Rating rating) => await _dbContext.Ratings.AddAsync(rating);
+        public async Task CalculateRating(string name)
+        {
+            var movie = await _dbContext.Movies.FirstOrDefaultAsync(m => m.MovieName == name);
+            var calculated_rating = movie.GetRating();
+            movie.Rating = calculated_rating;
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

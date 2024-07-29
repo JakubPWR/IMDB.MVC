@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/AddRating.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxBZGRSYXRpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

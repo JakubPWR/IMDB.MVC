@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using IMDB.Application.DTOs;
+using IMDB.Application.IMDB.Commands.AddRating;
 using IMDB.Application.IMDB.Commands.CreateMovie;
 using IMDB.Application.IMDB.Commands.DeleteMovie;
 using IMDB.Application.IMDB.Commands.Edit;
 using IMDB.Application.IMDB.Queries;
 using IMDB.Application.IMDB.Queries.GetAllMovies;
 using IMDB.Application.IMDB.Queries.GetMovieByName;
+using IMDB.Domain.Entities;
 using IMDB.Domain.Interfaces;
 using IMDB.MVC.Extensions;
 using MediatR;
@@ -92,6 +95,38 @@ namespace IMDB.MVC.Controllers
         {
             var movie = await _mediatR.Send(new GetMovieByNameQuery(MovieName)); 
             return View(movie);
+        }
+        [Authorize]
+        [Route("IMDB/{MovieName}/AddRating")]
+        public async Task<IActionResult> AddRating(string MovieName)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var movieDto = await _mediatR.Send(new GetMovieByNameQuery(MovieName));
+      
+            AddRatingCommand rating = new AddRatingCommand{ RMovieName = movieDto.MovieName};
+            return View(rating);
+        }
+        [Authorize]
+        [Route("IMDB/{MovieName}/AddRating")]
+        [HttpPost]
+        public async Task<IActionResult> AddRating(AddRatingCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            await _mediatR.Send(command);
+
+            this.SetNotification("success", $"Added rating to movie {command.RMovieName}");
+            string decodedRMovieName = Uri.UnescapeDataString(command.RMovieName);
+
+            // Use the decoded movie name for redirection
+            return RedirectToAction("Details", "IMDB", new { MovieName = decodedRMovieName });
+           /* return RedirectToAction($"{command.RMovieName}/Details"); //TODO refactor*/
         }
     }
 }

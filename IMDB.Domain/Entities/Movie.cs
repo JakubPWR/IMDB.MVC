@@ -22,7 +22,25 @@ namespace IMDB.Domain.Entities
         public IdentityUser? CreatedBy { get; set; }
         public string EncodedName { get; private set; } = default!;
         public void EncodeName() => EncodedName = MovieName.ToLower().Replace(" ", "-");
-
-
+        public float GetRating()
+        {
+            float sum = 0;
+            if (Ratings.Count > 0)
+            {
+                foreach (var r in Ratings)
+                {
+                    sum += r.rating;
+                }
+                return sum / Ratings.Count;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public void AddRating(Rating rating)
+        {
+            Ratings.Add(rating);
+        }
     }
 }
