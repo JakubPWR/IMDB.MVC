@@ -16,8 +16,8 @@ namespace IMDB.Domain.Entities
         public string Description { get; set; }
         public DateTime PremierDate { get; set; }
         public DateTime AddedAt { get; set; } = DateTime.UtcNow;
-        public List<Rating>? Ratings { get; set; } = new();
-        public List<Actor>? Cast { get; set; } = new();
+        public List<Rating> Ratings { get; set; } = new();
+        public List<Actor> Cast { get; set; } = new();
         public string? CreatedById { get; set; }
         public IdentityUser? CreatedBy { get; set; }
         public string EncodedName { get; private set; } = default!;
@@ -40,7 +40,8 @@ namespace IMDB.Domain.Entities
         }
         public void AddRating(Rating rating)
         {
-            Ratings.Add(rating);
+            Ratings.Insert(0,rating);
+            Console.WriteLine($"Rating added {rating.About}");
         }
     }
 }

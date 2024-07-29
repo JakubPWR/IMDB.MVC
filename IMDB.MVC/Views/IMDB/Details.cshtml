@@ -15,6 +15,7 @@
     <p class="lead">@Model.Description</p>
     <hr class="my-4">
     <h4>Rating: @Model.Rating</h4>
+    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="ViewRatings" asp-route-MovieName="@Model.MovieName">ViewRatings</a>
     <a class="btn btn-secondary" asp-controller="IMDB" asp-action="AddRating" asp-route-MovieName="@Model.MovieName">Add Rating</a>
     <hr class="my-4">
     <p class="lead">

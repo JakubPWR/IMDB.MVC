@@ -7,6 +7,8 @@ using IMDB.Application.IMDB.Commands.Edit;
 using IMDB.Application.IMDB.Queries;
 using IMDB.Application.IMDB.Queries.GetAllMovies;
 using IMDB.Application.IMDB.Queries.GetMovieByName;
+using IMDB.Application.IMDB.Queries.GetMovieByNameList;
+using IMDB.Application.IMDB.Queries.GetRatingsByName;
 using IMDB.Domain.Entities;
 using IMDB.Domain.Interfaces;
 using IMDB.MVC.Extensions;
@@ -126,7 +128,28 @@ namespace IMDB.MVC.Controllers
 
             // Use the decoded movie name for redirection
             return RedirectToAction("Details", "IMDB", new { MovieName = decodedRMovieName });
-           /* return RedirectToAction($"{command.RMovieName}/Details"); //TODO refactor*/
         }
+        public IActionResult Search()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Search(string SearchedName)
+        {
+            var movies = await _mediatR.Send(new GetMovieByNameListQuery { SearchedName = SearchedName });
+            if (!movies.Any())
+            {
+                ViewBag.Message = "No movies found.";
+                return View();
+            }
+            return View("SearchResults", movies);
+        }
+        [Route("IMDB/{MovieName}/Details/Ratings")]
+        public async Task<IActionResult> ViewRatings(string MovieName)
+        {
+            var movie = await _mediatR.Send(new GetRatingsByNameQuery { RatingMovieName = MovieName});
+            return View(movie);
+        }
+
     }
 }

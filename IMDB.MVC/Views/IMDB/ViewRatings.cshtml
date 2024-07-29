@@ -1,0 +1,34 @@
+﻿@using IMDB.Application.IMDB.Queries.GetRatingsByName
+@model IEnumerable<IMDB.Application.DTOs.RatingDto>
+@{
+    ViewData["Title"] = "Ratings";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title">@item.AddedAt</h4>
+                <h4 class="card-title">@item.UserName</h4>
+                <h5 class="card-title">@item.Movie.MovieName</h5>
+                <h5 class="card-body">
+                    @if (!string.IsNullOrEmpty(item.About) && item.About.Length > 100)
+                    {
+                        <h4> @item.About.Substring(0, 100)... </h4>
+                    }
+                    else
+                    {
+                        @item.About
+                    }
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Rating: @item.rating</h6>
+                @if (item.IsEditable)
+                {
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Delete" asp-route-UserId="@item.UserId" asp-route-About="@item.About">Delete</a>
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Edit" asp-route-UserId="@item.UserId" asp-route-About="@item.About">Edit</a>
+                }
+            </div>
+        </div>
+    }
+</div>

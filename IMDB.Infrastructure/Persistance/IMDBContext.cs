@@ -24,7 +24,9 @@ namespace IMDB.Infrastructure.Persistance
 
             modelBuilder.Entity<Domain.Entities.Movie>(m =>
             {
-                m.OwnsOne(m => m.Ratings);
+                m.HasMany(m => m.Ratings)
+                .WithOne(r=>r.Movie)
+                .HasForeignKey(r=>r.MovieId);
                 m.OwnsOne(m => m.Cast);
             }
             );

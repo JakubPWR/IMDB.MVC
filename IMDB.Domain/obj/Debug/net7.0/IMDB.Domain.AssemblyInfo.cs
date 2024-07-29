@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IMDB.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cea16b5ed731fc9e05308bae6700c2fb1ffdd9d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae4e61072c5505108bb85fd86cf4abf5ddce0444")]
 [assembly: System.Reflection.AssemblyProductAttribute("IMDB.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IMDB.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

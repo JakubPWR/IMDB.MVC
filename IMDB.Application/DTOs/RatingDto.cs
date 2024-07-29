@@ -14,5 +14,8 @@ namespace IMDB.Application.DTOs
         public string? About { get; set; }
         public Movie Movie { get; set; }
         public int MovieId { get; set; }
+        public string UserName { get; set; }
+        public bool IsEditable { get; set; }
+        public string UserId { get; set; }
     }
 }

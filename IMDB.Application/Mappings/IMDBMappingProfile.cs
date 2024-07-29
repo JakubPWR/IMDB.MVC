@@ -27,11 +27,14 @@ namespace IMDB.Application.Mappings
             CreateMap<MovieDto, EditMovieCommand>();
             CreateMap<RatingDto, Rating>()
                 .ForMember(r => r.UserName, opt => opt.MapFrom(src => user.Email))
-                .ForMember(r => r.UserId, opt => opt.MapFrom(src => user.Id));
+                .ForMember(r => r.UserId, opt => opt.MapFrom(src => user.Id))
+                .ForMember(r => r.IsEditable, opt => opt.MapFrom(src => user != null && (src.UserId == user.Id || user.IsInRole("Admin"))))
+                .ReverseMap();
             CreateMap<AddRatingCommand, Rating>()
                 .ForMember(r => r.UserName, opt => opt.MapFrom(src => user.Email))
                 .ForMember(r => r.UserId, opt => opt.MapFrom(src => user.Id));
             CreateMap<Rating, AddRatingCommand>();
+            /*CreateMap<IEnumerable<Movie>, IEnumerable<MovieDto>>();*/
         }
     }
 }

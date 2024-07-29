@@ -1,0 +1,44 @@
+﻿@using IMDB.Application.DTOs
+@model IEnumerable<MovieDto>
+
+@{
+    ViewData["Title"] = "SearchResults";
+}
+
+<h2>Search Results</h2>
+
+@if (!Model.Any())
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card m-3" style="width: 18rem;">
+                <div class="card-body">
+                    <img src="@item.PictureUrl" class="img-fluid" alt="Image of @item.MovieName">
+                    <h5 class="card-title">@item.MovieName</h5>
+                    <h5 class="card-body">
+                        @if (!string.IsNullOrEmpty(item.Description) && item.Description.Length > 100)
+                        {
+                            <h4> @item.Description.Substring(0, 100)... </h4>
+                        }
+                        else
+                        {
+                            @item.Description
+                        }
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Rating: @item.Rating</h6>
+                    @if (item.IsEditable)
+                    {
+                        <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Delete" asp-route-MovieName="@item.MovieName">Delete</a>
+                        <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Edit" asp-route-MovieName="@item.MovieName">Edit</a>
+                    }
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Details" asp-route-MovieName="@item.MovieName">Details</a>
+                </div>
+            </div>
+        }
+    </div>
+}

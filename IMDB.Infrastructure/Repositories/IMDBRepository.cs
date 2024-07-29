@@ -31,7 +31,7 @@ namespace IMDB.Infrastructure.Repositories
         }
         public async Task<Movie> GetMovieByName(string name)
         {
-            var movie = _dbContext.Movies.FirstOrDefault(m => m.MovieName == name);
+            var movie = _dbContext.Movies.Include(m=>m.Ratings).FirstOrDefault(m => m.MovieName == name);
             return movie;
         }
         public async Task Create(Movie movie)
@@ -51,6 +51,11 @@ namespace IMDB.Infrastructure.Repositories
             var calculated_rating = movie.GetRating();
             movie.Rating = calculated_rating;
             await _dbContext.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<Movie>> GetMoviesList(string name)
+        {
+            var movies = _dbContext.Movies.Where(m=>m.MovieName.ToLower().Contains(name.ToLower()));
+            return movies;
         }
     }
 }

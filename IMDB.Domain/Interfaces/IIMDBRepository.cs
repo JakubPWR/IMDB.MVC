@@ -18,5 +18,6 @@ namespace IMDB.Domain.Interfaces
         Task<Movie> GetByEncodedName(string encodedName);
         Task AddRating(Rating rating);
         Task CalculateRating(string name);
+        Task<IEnumerable<Movie>> GetMoviesList(string name);
     }
 }

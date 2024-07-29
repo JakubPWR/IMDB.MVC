@@ -31,10 +31,12 @@ namespace IMDB.Application.IMDB.Commands.AddRating
             var rating = _mapper.Map<Rating>(request);
             rating.Movie = movie;
             rating.MovieId = movie.Id;
-            movie.AddRating(rating);
             await _repository.AddRating(rating);
+            movie.AddRating(rating);
             await _repository.CalculateRating(request.RMovieName);
+            var count = movie.Ratings.Count;
             await _repository.Commit();
+            
             return Unit.Value;
         }
     }
