@@ -34,13 +34,16 @@ namespace IMDB.Application.IMDB.Queries.GetRatingsByName
                 return Enumerable.Empty<RatingDto>();
             }
             var ratingsDtos = _mapper.Map<IEnumerable<RatingDto>>(ratings);
-            foreach (var i in ratingsDtos)
+            if (user != null)
             {
-                if(!user.Id.IsNullOrEmpty())
+                foreach (var i in ratingsDtos)
                 {
-                    if(user.Id == i.UserId || user.IsInRole("Admin"))
+                    if (!user.Id.IsNullOrEmpty())
                     {
-                        i.IsEditable = true;
+                        if (user.Id == i.UserId || user.IsInRole("Admin"))
+                        {
+                            i.IsEditable = true;
+                        }
                     }
                 }
             }

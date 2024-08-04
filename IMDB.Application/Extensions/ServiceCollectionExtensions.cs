@@ -4,6 +4,7 @@ using FluentValidation.AspNetCore;
 using IMDB.Application.ApplicationUser;
 using IMDB.Application.IMDB.Commands.AddRating;
 using IMDB.Application.IMDB.Commands.CreateMovie;
+using IMDB.Application.IMDB.Commands.EditRating;
 using IMDB.Application.IMDB.Queries.GetAllMovies;
 using IMDB.Application.IMDB.Queries.GetMovieByName;
 using IMDB.Application.Mappings;
@@ -38,6 +39,9 @@ namespace IMDB.Application.Extensions
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblyContaining<AddRatingCommandValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssemblyContaining<EditRatingCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
         }

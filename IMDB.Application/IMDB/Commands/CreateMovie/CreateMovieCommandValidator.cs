@@ -13,9 +13,9 @@ namespace IMDB.Application.IMDB.Commands.CreateMovie
         public CreateMovieCommandValidator(IIMDBRepository repository) 
         {
             RuleFor(c => c.MovieName).NotEmpty().WithMessage("Movie name can not be empty")
-                .Custom((value, context) =>
+                .Custom(async (value, context) =>
                 {
-                    var existingMovie = repository.GetMovieByName(value).Result;
+                    var existingMovie =  repository.GetMovieByName(value).Result;
                     if (existingMovie != null)
                     {
                         context.AddFailure($"{value} is not unique name for movie");

@@ -5,6 +5,11 @@
 }
 
 <div class="row">
+    @if(@Model.Count() < 1)
+    {
+        <h2>No Ratings yet :(</h2>
+
+    }
     @foreach (var item in Model)
     {
         <div class="card m-3" style="width: 18rem;">
@@ -25,8 +30,8 @@
                 <h6 class="card-subtitle mb-2 text-muted">Rating: @item.rating</h6>
                 @if (item.IsEditable)
                 {
-                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Delete" asp-route-UserId="@item.UserId" asp-route-About="@item.About">Delete</a>
-                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Edit" asp-route-UserId="@item.UserId" asp-route-About="@item.About">Edit</a>
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="DeleteRating" asp-route-MovieName="@item.Movie.MovieName" asp-route-UserId="@item.UserId">Delete</a>
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="EditRating" asp-route-MovieName="@item.Movie.MovieName" asp-route-UserId="@item.UserId">Edit</a>
                 }
             </div>
         </div>

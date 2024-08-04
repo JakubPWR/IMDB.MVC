@@ -1,13 +1,19 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using IMDB.Application.DTOs;
 using IMDB.Application.IMDB.Commands.AddRating;
+using IMDB.Application.IMDB.Commands.CreateActor;
 using IMDB.Application.IMDB.Commands.CreateMovie;
 using IMDB.Application.IMDB.Commands.DeleteMovie;
+using IMDB.Application.IMDB.Commands.DeleteRating;
 using IMDB.Application.IMDB.Commands.Edit;
+using IMDB.Application.IMDB.Commands.EditRating;
 using IMDB.Application.IMDB.Queries;
+using IMDB.Application.IMDB.Queries.GetAllActors;
 using IMDB.Application.IMDB.Queries.GetAllMovies;
 using IMDB.Application.IMDB.Queries.GetMovieByName;
 using IMDB.Application.IMDB.Queries.GetMovieByNameList;
+using IMDB.Application.IMDB.Queries.GetRatingByName;
 using IMDB.Application.IMDB.Queries.GetRatingsByName;
 using IMDB.Domain.Entities;
 using IMDB.Domain.Interfaces;
@@ -15,6 +21,8 @@ using IMDB.MVC.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace IMDB.MVC.Controllers
 {
@@ -22,11 +30,13 @@ namespace IMDB.MVC.Controllers
     {
         private readonly IMediator _mediatR;
         private IMapper _mapper;
+        private readonly IIMDBRepository _repository;
 
-        public IMDBController(IMediator mediatR, IMapper mapper)
+        public IMDBController(IMediator mediatR, IMapper mapper, IIMDBRepository repository)
         {
             _mediatR = mediatR;
             _mapper = mapper;
+            _repository = repository;
         }
         public async Task<IActionResult> Index()
         {
@@ -62,7 +72,7 @@ namespace IMDB.MVC.Controllers
                 return View(command);
             }
             await _mediatR.Send(command);
-
+            TempData["message"] = $"Movie {command.MovieName} created succesfully";
             this.SetNotification("success", $"Created movie {command.MovieName}");
             return RedirectToAction("Index"); //TODO refactor
         }
@@ -106,10 +116,18 @@ namespace IMDB.MVC.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var movieDto = await _mediatR.Send(new GetMovieByNameQuery(MovieName));
-      
+            var movie = await _repository.GetMovieByName(movieDto.MovieName);
             AddRatingCommand rating = new AddRatingCommand{ RMovieName = movieDto.MovieName};
+            var ExistingRating = movie.Ratings.FirstOrDefault(r => r.UserId == userId);
+            if (ExistingRating != null)
+            {
+                string decodedRMovieName = Uri.UnescapeDataString(rating.RMovieName);
+
+                // Use the decoded movie name for redirection
+                return RedirectToAction("ShowUsersRating", "IMDB", new { MovieName = decodedRMovieName, UserId = userId });
+            }
             return View(rating);
         }
         [Authorize]
@@ -151,5 +169,84 @@ namespace IMDB.MVC.Controllers
             return View(movie);
         }
 
+        [Route("IMDB/{MovieName}/{UserId}/DeleteRating")]
+        public async Task<IActionResult> DeleteRating(string MovieName, string UserId)
+        {
+            var rating = await _mediatR.Send(new GetRatingByNameQuery {MovieName = MovieName, UserId = UserId});
+            DeleteRatingCommand model = _mapper.Map<DeleteRatingCommand>(rating);
+            return View(model);
+        }
+        [HttpPost]
+        [Route("IMDB/{MovieName}/{UserId}/DeleteRating")]
+        public async Task<IActionResult> DeleteRating(DeleteRatingCommand command)
+        {
+            await _mediatR.Send(command);
+            string decodedMovieName = Uri.UnescapeDataString(command.MovieName);
+
+            // Use the decoded movie name for redirection
+            return RedirectToAction("Details", "IMDB", new { MovieName = decodedMovieName });
+        }
+        [Route("IMDB/{MovieName}/{UserId}/EditRating")]
+        public async Task<IActionResult> EditRating(string MovieName, string UserId)
+        {
+            var rating = await _mediatR.Send(new GetRatingByNameQuery { MovieName = MovieName, UserId = UserId });
+            EditRatingCommand model = _mapper.Map<EditRatingCommand>(rating);
+            model.EncodedNameEditRating = rating.Movie.MovieName;
+            return View(model);
+        }
+        [Route("IMDB/{MovieName}/{UserId}/EditRating")]
+        [HttpPost]
+        public async Task<IActionResult> EditRating(EditRatingCommand command)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            await _mediatR.Send(command);
+            this.SetNotification("success", $"Edited rating");
+            string decodedMovieName = Uri.UnescapeDataString(command.EncodedNameEditRating);
+            // Use the decoded movie name for redirection
+            return RedirectToAction("Details", "IMDB", new { MovieName = decodedMovieName });
+
+
+        }
+        [Route("IMDB/{MovieName}/{UserId}/UsersRating")]
+        public async Task<IActionResult> ShowUsersRating(string MovieName, string UserId)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var rating = await _mediatR.Send(new GetRatingByNameQuery { MovieName= MovieName,UserId = UserId });
+            if(User.IsInRole("Admin") || rating.UserId == userId)
+            {
+                rating.IsEditable = true;
+            }
+            return View(rating);
+        }
+        [Authorize(Roles = ("Admin"))]
+        public IActionResult CreateActor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = ("Admin"))]
+        [Route("IMDB/CreateActor")]
+        public async Task<IActionResult> CreateActor(CreateActorCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            await _mediatR.Send(command);
+            TempData["message"] = $"Movie {command.ActorName} created succesfully";
+            this.SetNotification("success", $"Created movie {command.ActorName}");
+            return RedirectToAction("Actors"); //TODO refactor
+        }
+
+        [Route("IMDB/Actors")]
+        public async Task<IActionResult> Actors()
+        {
+            var actors = await _mediatR.Send(new GetAllActorsQuery());
+            return View(actors);
+        }
     }
 }

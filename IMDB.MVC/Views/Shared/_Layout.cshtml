@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/IMDB.MVC.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" />
 </head>
 <body>
     <header>
@@ -22,6 +24,7 @@
                         <li class="nav-item d-flex">
                             <a class="nav-link text-dark" asp-area="" asp-controller="IMDB" asp-action="Index">IMDB</a>
                             <a class="nav-link text-dark" asp-area="" asp-controller="IMDB" asp-action="Search">Search</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="IMDB" asp-action="Actors">Actors</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

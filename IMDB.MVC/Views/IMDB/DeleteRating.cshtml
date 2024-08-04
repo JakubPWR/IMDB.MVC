@@ -1,0 +1,47 @@
+﻿@using IMDB.Application.IMDB.Commands.DeleteRating
+@model DeleteRatingCommand
+
+@{
+    ViewData["Title"] = "DeleteRating";
+}
+
+<h4>Delete @Model.Movie.MovieName rating</h4>
+<div class="card m-3" style="width: 18rem;">
+    <div class="card-body">
+        <h4 class="card-title">@Model.AddedAt</h4>
+        <h4 class="card-title">@Model.UserName</h4>
+        <h5 class="card-title">@Model.Movie.MovieName</h5>
+        <h5 class="card-body">
+            @if (!string.IsNullOrEmpty(Model.About) && Model.About.Length > 100)
+            {
+                <h4> @Model.About.Substring(0, 100)... </h4>
+            }
+            else
+            {
+                @Model.About
+            }
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">Rating: @Model.rating</h6>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DeleteRating" method="post">
+            <div class="fprm-group m-3">
+                <label asp-for="Confirmation" class="control-label"></label>
+                <input asp-for="Confirmation" class="form-control" />
+                <span asp-validation-for="Confirmation" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <input type="submit" value="DeleteRating" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<a asp-action="Index" class="btn btn-secondary">Back to home page</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

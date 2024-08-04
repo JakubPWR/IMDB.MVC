@@ -4,7 +4,9 @@ using IMDB.Application.DTOs;
 using IMDB.Application.IMDB.Commands.AddRating;
 using IMDB.Application.IMDB.Commands.CreateMovie;
 using IMDB.Application.IMDB.Commands.DeleteMovie;
+using IMDB.Application.IMDB.Commands.DeleteRating;
 using IMDB.Application.IMDB.Commands.Edit;
+using IMDB.Application.IMDB.Commands.EditRating;
 using IMDB.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -34,7 +36,11 @@ namespace IMDB.Application.Mappings
                 .ForMember(r => r.UserName, opt => opt.MapFrom(src => user.Email))
                 .ForMember(r => r.UserId, opt => opt.MapFrom(src => user.Id));
             CreateMap<Rating, AddRatingCommand>();
-            /*CreateMap<IEnumerable<Movie>, IEnumerable<MovieDto>>();*/
+            CreateMap<Rating, RatingDto>();
+            CreateMap<RatingDto, DeleteRatingCommand>();
+            CreateMap<DeleteRatingCommand, Rating>();
+            CreateMap<RatingDto, EditRatingCommand>();
+            CreateMap<ActorDto, Actor>().ReverseMap();
         }
     }
 }

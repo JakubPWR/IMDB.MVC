@@ -10,8 +10,7 @@ namespace IMDB.Domain.Entities
     {
         public int Id { get; set; }
         public string ActorName { get; set; }
-        public List<Movie>? Movies { get; set; }
-        public List<Rating>? Ratings { get; set; }
-
+        public List<Movie> Movies { get; set; } = new ();
+        public string PictureUrl { get; set; }
     }
 }

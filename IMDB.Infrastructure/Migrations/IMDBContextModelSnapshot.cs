@@ -34,6 +34,10 @@ namespace IMDB.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Actors");
@@ -93,9 +97,6 @@ namespace IMDB.Infrastructure.Migrations
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ActorId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("AddedAt")
                         .HasColumnType("datetime2");
 
@@ -117,8 +118,6 @@ namespace IMDB.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ActorId");
 
                     b.HasIndex("MovieId");
 
@@ -345,7 +344,8 @@ namespace IMDB.Infrastructure.Migrations
                                 .HasForeignKey("ActorId");
                         });
 
-                    b.Navigation("Movies");
+                    b.Navigation("Movies")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("IMDB.Domain.Entities.Movie", b =>
@@ -378,10 +378,6 @@ namespace IMDB.Infrastructure.Migrations
 
             modelBuilder.Entity("IMDB.Domain.Entities.Rating", b =>
                 {
-                    b.HasOne("IMDB.Domain.Entities.Actor", null)
-                        .WithMany("Ratings")
-                        .HasForeignKey("ActorId");
-
                     b.HasOne("IMDB.Domain.Entities.Movie", "Movie")
                         .WithMany("Ratings")
                         .HasForeignKey("MovieId")
@@ -440,11 +436,6 @@ namespace IMDB.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("IMDB.Domain.Entities.Actor", b =>
-                {
-                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("IMDB.Domain.Entities.Movie", b =>

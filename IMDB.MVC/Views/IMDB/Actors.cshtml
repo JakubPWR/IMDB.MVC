@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IEnumerable<IMDB.Application.DTOs.ActorDto>
+
+@{
+    ViewData["Title"] = "Actors";
+    var isAdmin = User.Identity.IsAuthenticated && UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "Admin").Result;
+}
+<h1>Welcome</h1>
+<p>
+    @if (isAdmin)
+    {
+        <a asp-action="CreateActor" class="btn btn-secondary">Create New Actor</a>
+    }
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <img src="@item.PictureUrl" class="img-fluid" alt="Image of @item.ActorName">
+                <h5 class="card-title">@item.ActorName</h5>
+            @*     <h5 class="card-body">
+                    @if (!string.IsNullOrEmpty(item.Description) && item.Description.Length > 100)
+                    {
+                        <h4> @item.Description.Substring(0, 100)... </h4>
+                    }
+                    else
+                    {
+                        @item.Description
+                    }
+                </h5> *@
+                @if (isAdmin)
+                {
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Delete" asp-route-MovieName="@item.ActorName">Delete</a>
+                    <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Edit" asp-route-MovieName="@item.ActorName">Edit</a>
+                }
+                <a class="btn btn-secondary" asp-controller="IMDB" asp-action="Details" asp-route-MovieName="@item.ActorName">Details</a>
+            </div>
+        </div>
+    }
+</div>

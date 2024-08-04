@@ -19,5 +19,10 @@ namespace IMDB.Domain.Interfaces
         Task AddRating(Rating rating);
         Task CalculateRating(string name);
         Task<IEnumerable<Movie>> GetMoviesList(string name);
+        Task<Rating> GetRatingById(string MovieName , string UserId);
+        Task DeleteRating(Rating rating);
+        Task AddActorToDb(Actor actor);
+        Task<Actor> GetActorByName(string name);
+        Task<IEnumerable<Actor>> GetAllActors();
     }
 }

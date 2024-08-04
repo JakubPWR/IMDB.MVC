@@ -12,6 +12,7 @@
             <div class="fprm-group m-3">
                 <label asp-for="Confirmation" class="control-label"></label>
                 <input asp-for="Confirmation" class="form-control" />
+                <span asp-validation-for="Confirmation" class="text-danger"></span>
             </div>
             <div class="form-group m-3">
                 <input type="submit" value="Delete" class="btn btn-primary" />
@@ -19,7 +20,7 @@
         </form>
     </div>
 </div>
-<a asp-action="Index" class="btn btn-secondary">Back to list</a>
+<a asp-action="Index" class="btn btn-secondary">Back to home page</a>
 </div>
 
 @section Scripts {

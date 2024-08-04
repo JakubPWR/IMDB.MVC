@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\MrPie\OneDrive\Desktop\C#\IMDB\IMDB.MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/Actors.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxBY3RvcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/AddRating.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxBZGRSYXRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,8 +30,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/CreateActor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxDcmVhdGVBY3Rvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/DeleteRating.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxEZWxldGVSYXRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/Details.cshtml]
@@ -36,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/EditRating.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxFZGl0UmF0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/Index.cshtml]
@@ -50,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxTZWFyY2hSZXN1bHRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/ShowUsersRating.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxTaG93VXNlcnNSYXRpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/IMDB/ViewRatings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSU1EQlxWaWV3UmF0aW5ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -60,6 +80,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/Shared/_Notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/MrPie/OneDrive/Desktop/C\#/IMDB/IMDB.MVC/Views/Shared/_ValidationScriptsPartial.cshtml]

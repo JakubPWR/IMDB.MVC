@@ -4,6 +4,7 @@ using IMDB.Application.DTOs;
 using IMDB.Domain.Entities;
 using IMDB.Domain.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,6 @@ namespace IMDB.Application.IMDB.Commands.AddRating
             await _repository.AddRating(rating);
             movie.AddRating(rating);
             await _repository.CalculateRating(request.RMovieName);
-            var count = movie.Ratings.Count;
             await _repository.Commit();
             
             return Unit.Value;

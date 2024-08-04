@@ -34,11 +34,12 @@ namespace IMDB.Application.IMDB.Commands.DeleteMovie
             {
                 return Unit.Value;
             }
-            var movie = _repository.DeleteMovie(request.MovieName);
+            var movie = await _repository.GetMovieByName(request.MovieName);
             if (movie == default)
             {
                 return Unit.Value;
             }
+            await _repository.DeleteMovie(request.MovieName);
             await _repository.Commit();
             return Unit.Value;
         }

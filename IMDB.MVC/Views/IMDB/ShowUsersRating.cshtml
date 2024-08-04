@@ -1,0 +1,33 @@
+﻿@using IMDB.Application.DTOs
+@model RatingDto
+@{
+    ViewData["Title"] = "Rating";
+}
+<h3>You already created rating for @Model.Movie.MovieName</h3>
+
+<div class="row">
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title">@Model.AddedAt</h4>
+            <h4 class="card-title">@Model.UserName</h4>
+            <h5 class="card-title">@Model.Movie.MovieName</h5>
+                <h5 class="card-body">
+                @if (!string.IsNullOrEmpty(Model.About) && Model.About.Length > 100)
+                    {
+                    <h4> @Model.About.Substring(0, 100)... </h4>
+                    }
+                    else
+                    {
+                    @Model.About
+                    }
+                </h5>
+            <h6 class="card-subtitle mb-2 text-muted">Rating: @Model.rating</h6>
+            @if (Model.IsEditable)
+                {
+                <a class="btn btn-secondary" asp-controller="IMDB" asp-action="DeleteRating" asp-route-MovieName="@Model.Movie.MovieName" asp-route-UserId="@Model.UserId">Delete</a>
+                <a class="btn btn-secondary" asp-controller="IMDB" asp-action="EditRating" asp-route-MovieName="@Model.Movie.MovieName" asp-route-UserId="@Model.UserId">Edit</a>
+                }
+            </div>
+        </div>
+    }
+</div>

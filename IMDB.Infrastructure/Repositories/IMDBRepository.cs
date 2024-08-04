@@ -47,7 +47,7 @@ namespace IMDB.Infrastructure.Repositories
         public async Task AddRating(Rating rating) => await _dbContext.Ratings.AddAsync(rating);
         public async Task CalculateRating(string name)
         {
-            var movie = await _dbContext.Movies.FirstOrDefaultAsync(m => m.MovieName == name);
+            var movie = await _dbContext.Movies.Include(m=>m.Ratings).FirstOrDefaultAsync(m => m.MovieName == name);
             var calculated_rating = movie.GetRating();
             movie.Rating = calculated_rating;
             await _dbContext.SaveChangesAsync();
@@ -57,5 +57,24 @@ namespace IMDB.Infrastructure.Repositories
             var movies = _dbContext.Movies.Where(m=>m.MovieName.ToLower().Contains(name.ToLower()));
             return movies;
         }
+        public async Task<Rating> GetRatingById(string MovieName, string UserId)
+        {
+            var rating = _dbContext.Ratings.Include(r=>r.Movie).Where(r=>r.Movie.MovieName == MovieName && r.UserId == UserId).FirstOrDefault();
+            return rating;
+        }
+        public async Task DeleteRating(Rating rating)
+        {
+            _dbContext.Ratings.Remove(rating);
+        }
+        public async Task AddActorToDb(Actor actor)
+        {
+            await _dbContext.Actors.AddAsync(actor);
+        }
+        public async Task<Actor> GetActorByName(string name)
+        {
+            var actor = await _dbContext.Actors.Include(a=>a.Movies).FirstOrDefaultAsync(a=>a.ActorName == name);
+            return actor;
+        }
+        public async Task<IEnumerable<Actor>> GetAllActors()=> await _dbContext.Actors.ToListAsync();
     }
 }
